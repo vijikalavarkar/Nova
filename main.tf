@@ -9,6 +9,7 @@ terraform {
     bucket = "nova-bucket-001"
     key    = "nova_statefile.tfstate"
     region = "us-east-1"
+    use_lockfile = true
   }
 }
 
@@ -30,7 +31,6 @@ module "internet_gateway" {
   source               = "./modules/internet_gateway"
   vpc_id               = module.vpc.vpc_id
   internet_gateway_tag = var.internet_gateway_tag
-  test_igw_tag         = var.test_igw_tag
 }
 
 # Subnets
@@ -71,4 +71,24 @@ module "security_groups" {
   source             = "./modules/security_groups"
   vpc_id             = module.vpc.vpc_id
   security_group_tag = var.security_group_tag
+}
+
+# EC2
+module "ec2" {
+  source            = "./modules/ec2"
+  subnet1_id        = module.subnets.subnet1_id
+  security_group_id = module.security_groups.security_group_id
+  ami               = var.ami
+  instance_type     = var.instance_type
+  key_name          = var.key_name
+  instance_tag      = var.instance_tag
+}
+
+
+#DynamoDB
+module "dynamodb" {
+  source            = "./modules/dynamodb"
+  dynamodb_table_name = var.dynamodb_table_name
+  dynamodb_billing_mode = var.dynamodb_billing_mode
+  dynamodb_hash_key = var.dynamodb_hash_key
 }
