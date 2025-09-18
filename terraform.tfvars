@@ -27,3 +27,6 @@ nova_public_route_table_tag = "nova_public_route_table"
 
 #Security Groups
 security_group_tag = "nova_security_group"
+
+# test
+test_igw_tag = "test_igw"

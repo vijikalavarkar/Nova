@@ -28,3 +28,7 @@ variable "nova_public_route_table_tag" {}
 
 #Security Groups
 variable "security_group_tag" {}
+
+
+# test
+variable "test_igw_tag" {}
