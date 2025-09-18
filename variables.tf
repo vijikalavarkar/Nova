@@ -30,5 +30,14 @@ variable "nova_public_route_table_tag" {}
 variable "security_group_tag" {}
 
 
-# test
-variable "test_igw_tag" {}
+#EC2
+variable "ami" {}
+variable "instance_type" {}
+variable "key_name" {}
+variable "instance_tag" {}
+
+#DynamoDB
+variable "dynamodb_table_name" {}
+variable "dynamodb_billing_mode" {}
+variable "dynamodb_hash_key" {}
+
